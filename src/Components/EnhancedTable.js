@@ -21,9 +21,9 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
 let counter = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(article, journal) {
   counter += 1;
-  return { id: counter, name, calories, fat, carbs, protein };
+  return { id: counter, article, journal};
 }
 
 function desc(a, b, orderBy) {
@@ -51,8 +51,8 @@ function getSorting(order, orderBy) {
 }
 
 const rows = [
-  { id: 'name', numeric: false, disablePadding: false, label: 'Article Titles' }, 
-//   {id: 'test', numeric: false, disablePadding: true, label: "???"},
+  { id: 'name', numeric: false, disablePadding: true, label: 'Article Titles' }, 
+  {id: 'journal', numeric: false, disablePadding: false, label: "Journal"}, 
   
 ];
 
@@ -205,19 +205,19 @@ class EnhancedTable extends React.Component {
     orderBy: 'calories',
     selected: [],
     data: [
-      createData('abc', 305, 3.7, 67, 4.3),
-      createData('asda', 452, 25.0, 51, 4.9),
-      createData('fvvavs', 262, 16.0, 24, 6.0),
-      createData('zxc', 159, 6.0, 24, 4.0),
-      createData('qwe', 356, 16.0, 49, 3.9),
-      createData('rew', 408, 3.2, 87, 6.5),
-      createData('try', 237, 9.0, 37, 4.3),
-      createData('utu', 375, 0.0, 94, 0.0),
-      createData('zzz', 518, 26.0, 65, 7.0),
-      createData('vcx'),
-      createData('cvb'),
-      createData('nbv'),
-      createData('mnj'),
+      createData('abc', 'Biotech'),
+      createData('asda', "AAPS"),
+      createData('fvvavs', "Academic Pathology"),
+      createData('zxc', "ACS Central Science"),
+      createData('qwe',"Bioteh"),
+      createData('rew', "Biotech"),
+      createData('try',"Biotech"),
+      createData('utu', "Biotech"),
+      createData('zzz', "Academic Pathology"),
+      createData('vcx', "Academic Pathology"),
+      createData('cvb', "ACS Central Science"),
+      createData('nbv', "AAPS"),
+      createData('mnj', "AAPS"),
     ],
     page: 0,
     rowsPerPage: 5,
@@ -310,7 +310,10 @@ class EnhancedTable extends React.Component {
                         <Checkbox checked={isSelected} />
                       </TableCell>
                       <TableCell component="th" scope="row" padding="none">
-                        {n.name}
+                        {n.article}
+                      </TableCell>  
+                      <TableCell>
+                        {n.journal}
                       </TableCell> 
                     </TableRow>
                   );
